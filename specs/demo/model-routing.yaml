@@ -1,0 +1,32 @@
+modelGateway:
+  defaultPolicy: balanced
+  logging:
+    capturePrompts: false
+    captureUsage: true
+  routes:
+    reasoning:
+      primary:
+        provider: openai
+        model: gpt-example-reasoning
+      fallback:
+        provider: anthropic
+        model: claude-example
+    summarization:
+      primary:
+        provider: gemini
+        model: gemini-example-flash
+      maxLatencyMs: 2500
+    privateClassification:
+      primary:
+        provider: local
+        runtime: ollama
+        model: local-classifier
+      dataPolicy: no_external_network
+    embeddings:
+      primary:
+        provider: openai
+        model: text-embedding-example
+        dimensions: 1536
+budgets:
+  dailyUsd: 25
+  perRequestUsd: 0.25

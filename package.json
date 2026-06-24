@@ -1,0 +1,32 @@
+{
+  "name": "agentic-web-stack",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reference architectures, protocols, standards, and technologies for the emerging Agentic Web.",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev docs --host 127.0.0.1",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs --host 127.0.0.1",
+    "api:sync": "uv sync --project services/api --locked",
+    "api:dev": "uv run --project services/api --locked uvicorn --app-dir services/api/src agentic_web_demo.main:app --host 127.0.0.1 --port 8000 --reload",
+    "api:test": "uv run --project services/api --locked pytest -c services/api/pyproject.toml services/api/tests",
+    "demo:run": "uv run --project services/api --locked python examples/literature-review/run_demo.py",
+    "demo:doctor": "node scripts/demo-doctor.mjs",
+    "demo:smoke": "node scripts/demo-smoke.mjs",
+    "specs:validate": "node scripts/validate-specs.mjs",
+    "check": "npm run specs:validate && npm run api:test && npm run demo:smoke && npm run docs:build"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^2.34.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "mermaid": "^11.15.0",
+    "vitepress": "^1.6.4",
+    "vitepress-plugin-mermaid": "^2.0.17",
+    "yaml": "^2.9.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

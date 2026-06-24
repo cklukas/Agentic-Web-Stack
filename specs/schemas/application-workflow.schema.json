@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentic-web-stack.example/schemas/application-workflow.schema.json",
+  "title": "Agentic Web Stack Demo Application Workflow",
+  "description": "Non-normative project schema for validating the demo end-to-end workflow.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["application", "entrypoint", "workflow", "humanControls", "observability"],
+  "properties": {
+    "application": { "type": "string", "minLength": 1 },
+    "entrypoint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "userRole"],
+      "properties": {
+        "type": { "type": "string", "minLength": 1 },
+        "userRole": { "type": "string", "minLength": 1 }
+      }
+    },
+    "workflow": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["id", "layer", "action"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "layer": { "type": "string", "minLength": 1 },
+          "action": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "humanControls": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requireApprovalBefore"],
+      "properties": {
+        "requireApprovalBefore": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "observability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["traceId", "recordToolCalls", "recordTokenUsage"],
+      "properties": {
+        "traceId": { "enum": ["required", "optional"] },
+        "recordToolCalls": { "type": "boolean" },
+        "recordTokenUsage": { "type": "boolean" }
+      }
+    }
+  }
+}

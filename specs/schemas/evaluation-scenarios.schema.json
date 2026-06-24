@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentic-web-stack.example/schemas/evaluation-scenarios.schema.json",
+  "title": "Agentic Web Stack Demo Evaluation Scenarios",
+  "description": "Non-normative project schema for validating demo evaluation scenarios.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["suite", "scenarios"],
+  "properties": {
+    "suite": { "type": "string", "minLength": 1 },
+    "scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "type", "input", "expected"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "type": {
+            "enum": [
+              "happy_path",
+              "auth_denial",
+              "prompt_injection",
+              "tool_failure",
+              "stale_discovery_metadata"
+            ]
+          },
+          "input": { "type": "object", "additionalProperties": true },
+          "expected": { "type": "object", "additionalProperties": true }
+        }
+      }
+    }
+  }
+}

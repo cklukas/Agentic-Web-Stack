@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentic-web-stack.example/schemas/memory.schema.json",
+  "title": "Agentic Web Stack Demo Memory Configuration",
+  "description": "Non-normative project schema for validating the demo memory configuration.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["corpus", "chunking", "embeddings", "vectorIndex", "knowledgeGraph", "retrieval"],
+  "properties": {
+    "corpus": {
+      "type": "object",
+      "required": ["name", "sourceStorage"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "sourceStorage": { "type": "string", "minLength": 1 }
+      }
+    },
+    "chunking": {
+      "type": "object",
+      "required": ["strategy", "maxTokens", "overlapTokens"],
+      "additionalProperties": false,
+      "properties": {
+        "strategy": { "type": "string", "minLength": 1 },
+        "maxTokens": { "type": "integer", "minimum": 1 },
+        "overlapTokens": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "embeddings": {
+      "type": "object",
+      "required": ["model", "dimensions"],
+      "additionalProperties": false,
+      "properties": {
+        "model": { "type": "string", "minLength": 1 },
+        "dimensions": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "vectorIndex": {
+      "type": "object",
+      "required": ["engine", "collection", "distance", "payloadFields"],
+      "additionalProperties": false,
+      "properties": {
+        "engine": { "enum": ["chroma", "qdrant", "weaviate", "pgvector"] },
+        "collection": { "type": "string", "minLength": 1 },
+        "distance": { "enum": ["cosine", "dot", "euclidean"] },
+        "payloadFields": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "knowledgeGraph": {
+      "type": "object",
+      "required": ["engine", "nodes", "relationships"],
+      "additionalProperties": false,
+      "properties": {
+        "engine": { "type": "string", "minLength": 1 },
+        "nodes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "relationships": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "retrieval": {
+      "type": "object",
+      "required": ["topK", "filters", "graphExpansion"],
+      "additionalProperties": false,
+      "properties": {
+        "topK": { "type": "integer", "minimum": 1 },
+        "filters": { "type": "object", "additionalProperties": true },
+        "graphExpansion": {
+          "type": "object",
+          "required": ["enabled", "maxHops"],
+          "additionalProperties": false,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "maxHops": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "name": "Literature Review Assistant",
+  "description": "A demo research agent that searches papers, retrieves context, and drafts literature review summaries with citations.",
+  "url": "https://research.example.edu/a2a/v1",
+  "provider": {
+    "organization": "Example University Library",
+    "url": "https://research.example.edu"
+  },
+  "version": "0.2.0",
+  "documentationUrl": "https://research.example.edu/docs/agents/literature-review-assistant",
+  "capabilities": {
+    "streaming": true,
+    "pushNotifications": false,
+    "extendedAgentCard": true
+  },
+  "securitySchemes": {
+    "campusOidc": {
+      "openIdConnectSecurityScheme": {
+        "openIdConnectUrl": "https://auth.example.edu/.well-known/openid-configuration"
+      }
+    }
+  },
+  "security": [
+    {
+      "campusOidc": [
+        "openid",
+        "profile",
+        "research:read",
+        "drafts:write"
+      ]
+    }
+  ],
+  "defaultInputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "text/plain",
+    "application/json"
+  ],
+  "skills": [
+    {
+      "id": "paper-search",
+      "name": "Paper Search",
+      "description": "Searches approved scholarly sources for papers matching a research question.",
+      "tags": [
+        "research",
+        "search",
+        "papers",
+        "citations"
+      ],
+      "examples": [
+        "Find recent papers about agent-to-agent interoperability.",
+        "{\"query\":\"retrieval augmented generation evaluation\",\"yearFrom\":2023}"
+      ],
+      "inputModes": [
+        "text/plain",
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json",
+        "text/plain"
+      ]
+    },
+    {
+      "id": "literature-summary",
+      "name": "Literature Summary",
+      "description": "Summarizes selected papers and returns key claims, methods, limitations, and citation metadata.",
+      "tags": [
+        "summarization",
+        "literature-review",
+        "citations"
+      ],
+      "examples": [
+        "Summarize these five papers and compare their evaluation methods."
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "text/plain",
+        "application/json"
+      ]
+    }
+  ]
+}

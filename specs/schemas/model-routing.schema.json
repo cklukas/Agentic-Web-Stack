@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentic-web-stack.example/schemas/model-routing.schema.json",
+  "title": "Agentic Web Stack Demo Model Routing",
+  "description": "Non-normative project schema for validating the demo model routing configuration.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["modelGateway", "budgets"],
+  "properties": {
+    "modelGateway": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["defaultPolicy", "logging", "routes"],
+      "properties": {
+        "defaultPolicy": { "type": "string", "minLength": 1 },
+        "logging": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["capturePrompts", "captureUsage"],
+          "properties": {
+            "capturePrompts": { "type": "boolean" },
+            "captureUsage": { "type": "boolean" }
+          }
+        },
+        "routes": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object",
+            "required": ["primary"],
+            "properties": {
+              "primary": { "$ref": "#/$defs/modelTarget" },
+              "fallback": { "$ref": "#/$defs/modelTarget" },
+              "maxLatencyMs": { "type": "integer", "minimum": 1 },
+              "dataPolicy": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dailyUsd", "perRequestUsd"],
+      "properties": {
+        "dailyUsd": { "type": "number", "minimum": 0 },
+        "perRequestUsd": { "type": "number", "minimum": 0 }
+      }
+    }
+  },
+  "$defs": {
+    "modelTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider"],
+      "properties": {
+        "provider": { "type": "string", "minLength": 1 },
+        "model": { "type": "string", "minLength": 1 },
+        "runtime": { "type": "string", "minLength": 1 },
+        "dimensions": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

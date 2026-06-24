@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://agentic-web-stack.example/schemas/agent-card.schema.json",
+  "title": "Agentic Web Stack Demo Agent Card",
+  "description": "Non-normative project schema for validating the demo Agent Card example. It is not a complete A2A conformance schema.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "description",
+    "url",
+    "provider",
+    "version",
+    "documentationUrl",
+    "capabilities",
+    "securitySchemes",
+    "security",
+    "defaultInputModes",
+    "defaultOutputModes",
+    "skills"
+  ],
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "url": { "type": "string", "format": "uri" },
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["organization", "url"],
+      "properties": {
+        "organization": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "version": { "type": "string", "minLength": 1 },
+    "documentationUrl": { "type": "string", "format": "uri" },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["streaming", "pushNotifications", "extendedAgentCard"],
+      "properties": {
+        "streaming": { "type": "boolean" },
+        "pushNotifications": { "type": "boolean" },
+        "extendedAgentCard": { "type": "boolean" }
+      }
+    },
+    "securitySchemes": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "minProperties": 1
+      }
+    },
+    "security": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "minProperties": 1,
+        "additionalProperties": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "defaultInputModes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "defaultOutputModes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "skills": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "description", "tags", "examples", "inputModes", "outputModes"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "examples": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "inputModes": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "outputModes": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    }
+  }
+}

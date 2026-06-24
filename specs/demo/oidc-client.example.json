@@ -1,0 +1,47 @@
+{
+  "identityProvider": {
+    "issuer": "https://auth.example.edu/",
+    "discoveryUrl": "https://auth.example.edu/.well-known/openid-configuration"
+  },
+  "client": {
+    "clientId": "literature-review-assistant",
+    "name": "Literature Review Assistant",
+    "grantType": "authorization_code",
+    "redirectUris": [
+      "https://research.example.edu/oauth/callback"
+    ]
+  },
+  "resourceServer": {
+    "audience": "https://research.example.edu/api",
+    "requiredClaims": [
+      "iss",
+      "aud",
+      "sub",
+      "azp",
+      "scope",
+      "exp"
+    ]
+  },
+  "scopes": {
+    "research:read": "Read approved scholarly sources visible to the signed-in user.",
+    "drafts:write": "Create literature review drafts that still require human approval.",
+    "debug:read": "Read local runtime, audit, and trace evidence for deterministic demo inspection.",
+    "profile": "Read basic user profile claims for attribution.",
+    "openid": "Request OpenID Connect identity semantics."
+  },
+  "exampleAccessTokenClaims": {
+    "iss": "https://auth.example.edu/",
+    "aud": "https://research.example.edu/api",
+    "sub": "user_123",
+    "azp": "literature-review-assistant",
+    "scope": "openid profile research:read drafts:write",
+    "tenant": "example-university",
+    "exp": 1782324000
+  },
+  "tokenHandling": {
+    "storeRefreshTokens": false,
+    "logTokens": false,
+    "rotateRefreshTokens": true,
+    "audienceRestricted": true
+  }
+}

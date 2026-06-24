@@ -1,0 +1,50 @@
+application: literature-review-assistant
+entrypoint:
+  type: web-app
+  userRole: researcher
+workflow:
+  - id: authenticate
+    layer: identity
+    action: start_oidc_login
+    scopes:
+      - research:read
+      - drafts:write
+  - id: discoverResearchAgent
+    layer: discovery
+    action: fetch_agent_card
+    url: https://research.example.edu/.well-known/agent-card.json
+  - id: verifyRegistryTrust
+    layer: discovery
+    action: check_agent_registry
+    registry: example-university-agent-registry
+    agentId: literature-review-assistant
+  - id: delegateSearch
+    layer: agent-protocols
+    action: send_a2a_message
+    protocol: a2a
+    skill: paper-search
+  - id: retrieveContext
+    layer: memory
+    action: vector_search_and_graph_expand
+  - id: callTools
+    layer: agent-protocols
+    action: call_mcp_tools
+    tools:
+      - search_documents
+      - fetch_document
+  - id: draftSummary
+    layer: models
+    action: route_model_call
+    route: reasoning
+  - id: createDraft
+    layer: apis
+    action: call_openapi_operation
+    operationId: createReviewDraft
+humanControls:
+  requireApprovalBefore:
+    - createDraft
+    - sendExternalEmail
+observability:
+  traceId: required
+  recordToolCalls: true
+  recordTokenUsage: true

@@ -1,0 +1,33 @@
+{
+  "jsonrpc": "2.0",
+  "id": "req-lit-review-001",
+  "method": "message/send",
+  "params": {
+    "message": {
+      "messageId": "msg-lit-review-001",
+      "role": "user",
+      "parts": [
+        {
+          "kind": "text",
+          "text": "Find recent papers about agent interoperability, compare the main protocol approaches, and return a cited literature review outline."
+        }
+      ]
+    },
+    "configuration": {
+      "acceptedOutputModes": [
+        "application/json",
+        "text/plain"
+      ],
+      "blocking": false
+    },
+    "metadata": {
+      "scenario": "literature-review-assistant",
+      "requestedBy": "demo-client-agent",
+      "traceId": "trace-demo-001",
+      "requiredScopes": [
+        "research:read",
+        "drafts:write"
+      ]
+    }
+  }
+}

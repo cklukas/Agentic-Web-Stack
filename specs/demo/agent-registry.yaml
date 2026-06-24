@@ -1,0 +1,33 @@
+registry:
+  id: example-university-agent-registry
+  name: Example University Agent Registry
+  version: "0.1.0"
+  steward: Example University Library
+agents:
+  - id: literature-review-assistant
+    name: Literature Review Assistant
+    approvedDomain: research.example.edu
+    agentCardUrl: https://research.example.edu/.well-known/agent-card.json
+    currentAgentCardVersion: "0.2.0"
+    trustLevel: organization-approved
+    allowedProtocols:
+      - openapi
+      - mcp
+      - a2a
+    endpoints:
+      openapi: https://research.example.edu/openapi.json
+      mcp: https://research.example.edu/mcp
+      a2a: https://research.example.edu/a2a/v1
+    requiredScopes:
+      - research:read
+      - drafts:write
+    policy:
+      humanReviewRequired: true
+      traceRequired: true
+      tokenLoggingAllowed: false
+      dataVisibility: approved-public-corpus
+    review:
+      status: approved
+      reviewedBy: Example University Library Architecture Review
+      reviewedAt: "2026-06-24"
+      expiresAt: "2027-06-24"

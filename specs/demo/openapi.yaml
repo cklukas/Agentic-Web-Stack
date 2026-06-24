@@ -1,0 +1,410 @@
+openapi: 3.1.0
+info:
+  title: Agentic Web Demo API
+  version: 0.2.0
+  description: Deterministic REST API used by the Literature Review Assistant demo.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - url: https://research.example.edu/api
+    description: Example production API origin
+tags:
+  - name: Registry
+    description: Discover locally approved agent metadata.
+  - name: Documents
+    description: Search and retrieve approved research documents.
+  - name: Review Drafts
+    description: Create human-reviewed literature review drafts.
+  - name: Debug
+    description: Local inspection endpoints for deterministic demo evidence.
+security:
+  - campusOidc:
+      - research:read
+paths:
+  /registry/agents/{agentId}:
+    get:
+      tags:
+        - Registry
+      summary: Retrieve an approved registry entry
+      description: Returns non-normative local trust metadata for a known demo agent.
+      operationId: getRegistryAgent
+      security: []
+      parameters:
+        - name: agentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Agent registry entry
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AgentRegistryEntry"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /documents/search:
+    post:
+      tags:
+        - Documents
+      summary: Search approved documents
+      description: Returns matching passages from approved scholarly sources.
+      operationId: searchDocuments
+      security:
+        - campusOidc:
+            - research:read
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DocumentSearchRequest"
+            examples:
+              rag:
+                value:
+                  query: agent interoperability protocols
+                  yearFrom: 2023
+                  limit: 5
+      responses:
+        "200":
+          description: Matching document passages
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DocumentSearchResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /documents/{documentId}:
+    get:
+      tags:
+        - Documents
+      summary: Retrieve document metadata
+      description: Returns metadata and source location for an approved document.
+      operationId: getDocument
+      security:
+        - campusOidc:
+            - research:read
+      parameters:
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Document metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /reviews/drafts:
+    post:
+      tags:
+        - Review Drafts
+      summary: Create a literature review draft
+      description: Creates a draft that must be reviewed by a human before publication or external sharing.
+      operationId: createReviewDraft
+      security:
+        - campusOidc:
+            - drafts:write
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateReviewDraftRequest"
+      responses:
+        "201":
+          description: Draft created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReviewDraft"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+  /debug/traces/{traceId}:
+    get:
+      tags:
+        - Debug
+      summary: Retrieve an architecture trace
+      description: Returns audit-safe, ordered trace events for local demo inspection.
+      operationId: getDebugTrace
+      security:
+        - campusOidc:
+            - debug:read
+      parameters:
+        - name: traceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Ordered architecture trace
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TraceResponse"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
+components:
+  securitySchemes:
+    campusOidc:
+      type: openIdConnect
+      openIdConnectUrl: https://auth.example.edu/.well-known/openid-configuration
+  responses:
+    Unauthorized:
+      description: Authentication is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    Forbidden:
+      description: The caller is authenticated but lacks the required scope or policy grant.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    NotFound:
+      description: The requested resource does not exist or is not visible to the caller.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+  schemas:
+    AgentRegistryEntry:
+      type: object
+      additionalProperties: true
+      required:
+        - id
+        - name
+        - approvedDomain
+        - agentCardUrl
+        - currentAgentCardVersion
+        - trustLevel
+        - allowedProtocols
+        - endpoints
+        - requiredScopes
+        - policy
+        - review
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        approvedDomain:
+          type: string
+        agentCardUrl:
+          type: string
+          format: uri
+        currentAgentCardVersion:
+          type: string
+        trustLevel:
+          type: string
+        allowedProtocols:
+          type: array
+          items:
+            type: string
+        endpoints:
+          type: object
+          additionalProperties:
+            type: string
+            format: uri
+        requiredScopes:
+          type: array
+          items:
+            type: string
+        policy:
+          type: object
+          additionalProperties: true
+        review:
+          type: object
+          additionalProperties: true
+    DocumentSearchRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          minLength: 1
+          description: Natural language research query.
+        yearFrom:
+          type: integer
+          minimum: 1900
+          maximum: 2100
+          description: Optional lower publication year bound.
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 10
+          default: 5
+    DocumentSearchResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - results
+      properties:
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/DocumentPassage"
+    DocumentPassage:
+      type: object
+      additionalProperties: false
+      required:
+        - documentId
+        - title
+        - snippet
+        - sourceUrl
+      properties:
+        documentId:
+          type: string
+        title:
+          type: string
+        snippet:
+          type: string
+        sourceUrl:
+          type: string
+          format: uri
+        score:
+          type: number
+          minimum: 0
+          maximum: 1
+    Document:
+      type: object
+      additionalProperties: false
+      required:
+        - documentId
+        - title
+        - sourceUrl
+        - visibility
+      properties:
+        documentId:
+          type: string
+        title:
+          type: string
+        sourceUrl:
+          type: string
+          format: uri
+        authors:
+          type: array
+          items:
+            type: string
+        publishedYear:
+          type: integer
+        visibility:
+          enum:
+            - public
+            - institution
+            - restricted
+    CreateReviewDraftRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - topic
+        - sourceDocumentIds
+        - outline
+      properties:
+        topic:
+          type: string
+          minLength: 1
+        sourceDocumentIds:
+          type: array
+          minItems: 1
+          items:
+            type: string
+        outline:
+          type: array
+          minItems: 1
+          items:
+            type: string
+        humanReviewRequired:
+          type: boolean
+          default: true
+    ReviewDraft:
+      type: object
+      additionalProperties: false
+      required:
+        - draftId
+        - status
+        - reviewUrl
+      properties:
+        draftId:
+          type: string
+        status:
+          enum:
+            - draft
+            - pending_review
+            - approved
+            - rejected
+        reviewUrl:
+          type: string
+          format: uri
+    TraceResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - traceId
+        - events
+      properties:
+        traceId:
+          type: string
+        events:
+          type: array
+          items:
+            $ref: "#/components/schemas/TraceEvent"
+    TraceEvent:
+      type: object
+      additionalProperties: false
+      required:
+        - timestamp
+        - traceId
+        - event
+        - layer
+        - component
+        - policyResult
+        - artifactRefs
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        traceId:
+          type: string
+        event:
+          type: string
+        layer:
+          type: string
+        component:
+          type: string
+        policyResult:
+          type: string
+        artifactRefs:
+          type: array
+          items:
+            type: string
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - error
+      properties:
+        error:
+          type: string
+        detail:
+          type: string

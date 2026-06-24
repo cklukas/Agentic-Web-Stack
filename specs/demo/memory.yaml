@@ -1,0 +1,36 @@
+corpus:
+  name: agentic-web-papers
+  sourceStorage: s3://example-research-corpus/papers/
+chunking:
+  strategy: markdown-section
+  maxTokens: 700
+  overlapTokens: 100
+embeddings:
+  model: text-embedding-example
+  dimensions: 1536
+vectorIndex:
+  engine: qdrant
+  collection: agentic_web_chunks
+  distance: cosine
+  payloadFields:
+    - documentId
+    - title
+    - section
+    - sourceUrl
+knowledgeGraph:
+  engine: neo4j
+  nodes:
+    - Paper
+    - Author
+    - Topic
+  relationships:
+    - WRITTEN_BY
+    - CITES
+    - DISCUSSES
+retrieval:
+  topK: 8
+  filters:
+    visibility: public
+  graphExpansion:
+    enabled: true
+    maxHops: 2

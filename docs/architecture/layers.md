@@ -12,13 +12,15 @@ Use the [Architecture Overview](./index.md) for the canonical diagram and [Techn
 | 4 | Agent Protocols | Agent-to-tool and agent-to-agent interoperability | MCP, A2A |
 | 3 | APIs | Deterministic application and system interfaces | REST, GraphQL, OpenAPI |
 | 2 | Identity | Authentication, authorization, delegation, and policy | OAuth2, OpenID Connect, JWT |
-| 1 | Discovery | Machine-readable service and agent discovery | Agent Cards, robots.txt, sitemap.xml, OpenAPI |
+| 1 | Discovery | Service, agent, and documentation discovery | Agent Cards, robots.txt, sitemap.xml, OpenAPI, llms.txt (proposal) |
 
 ## Layer Responsibilities
 
 ### Layer 1: Discovery
 
 Agents need predictable ways to find services, understand capabilities, and locate machine-readable metadata.
+
+[llms.txt](/concepts/llms-txt) adds an optional documentation entry point for agents seeking context before using a service.
 
 ### Layer 2: Identity
 

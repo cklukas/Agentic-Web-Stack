@@ -25,6 +25,10 @@ flowchart LR
 - Registry or catalog metadata confirms approved use when governance requires it.
 - Cache headers and ETags are honored so stale metadata does not silently drive work.
 
+## Documentation Discovery
+
+[llms.txt](./llms-txt.md) adds a proposed entry point for finding documentation an agent can use as context. It complements the Agent Card and registry checks above; the client's approval and access policies still govern service use.
+
 ## Demo Mapping
 
 The local demo exposes a public Agent Card and a registry entry:

@@ -21,13 +21,15 @@ The layers are not product categories or vendor recommendations. They are a prac
 | 4 Agent Protocols | Agent-to-tool and agent-to-agent interoperability | MCP, A2A, JSON-RPC, protocol adapters, streaming transports | [Agent Protocols](/topics/agent-protocols) |
 | 3 APIs | Deterministic service capabilities and schemas | REST, GraphQL, OpenAPI, JSON Schema, FastAPI, Express, NestJS, Spring Boot | [APIs](/topics/apis) |
 | 2 Identity | Authentication, authorization, delegation, and policy | OAuth2, OpenID Connect, JWT, JWK, mTLS, API gateways, OPA | [Identity](/topics/identity) |
-| 1 Discovery | Machine-readable service and agent metadata | Agent Card, `/.well-known/agent-card.json`, agent registries, OpenAPI, robots.txt, sitemap.xml | [Discovery](/topics/discovery) |
+| 1 Discovery | Service, agent, and documentation metadata | Agent Card, `/.well-known/agent-card.json`, agent registries, OpenAPI, robots.txt, sitemap.xml, llms.txt (proposal) | [Discovery](/topics/discovery) |
 
 ## Level Introductions
 
 ### Level 1: Discovery
 
 Discovery answers: "What exists here, what can it do, and how do I talk to it?" For agents, the key artifact is the Agent Card, usually published at `/.well-known/agent-card.json` for A2A-compatible agents. Registries add local trust metadata such as approved domains, versions, protocols, and review status. Traditional web discovery artifacts such as `robots.txt`, `sitemap.xml`, and `openapi.json` still matter because agents often combine web crawling, API inspection, and explicit agent metadata.
+
+[llms.txt](/concepts/llms-txt) complements these artifacts with a curated documentation entry point. In an agentic OS, it can help an agent locate context before choosing tools, calling APIs, or retrieving knowledge. It is an optional community proposal; service contracts and trust decisions remain with the other stack components.
 
 ### Level 2: Identity
 

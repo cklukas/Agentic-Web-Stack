@@ -29,3 +29,6 @@ tmp/
 __pycache__/
 .pytest_cache/
 *.pyc
+
+# ckdocs static site output
+public/

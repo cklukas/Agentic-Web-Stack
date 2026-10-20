@@ -10,6 +10,7 @@ Each concept page includes a short use case and a small example message, metadat
 - [Agent2Agent](./a2a.md): protocol layer for communication and collaboration between independent agents.
 - [Model Context Protocol](./mcp.md): protocol layer for connecting an agent or AI application to tools, resources, and reusable prompts.
 - [Agent Discovery](./agent-discovery.md): how clients find agents and evaluate discovery metadata.
+- [llms.txt](./llms-txt.md): a proposed Markdown entry point for discovering documentation and context.
 - [Identity Delegation](./identity-delegation.md): scoped access when agents act for users, services, or organizations.
 - [Trust Model](./trust-model.md): trust levels and evidence required before using an agent.
 - [Agent Registry](./agent-registry.md): governed catalogs for approved agents and trust metadata.

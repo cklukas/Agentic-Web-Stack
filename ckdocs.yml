@@ -1,0 +1,84 @@
+version: 1
+site:
+  title: Agentic Web Stack
+  description: Reference architectures, protocols, standards, and technologies for the emerging Agentic Web.
+  footer: Page created by Dr. C. Klukas
+  url: http://rpi4:8421/Agentic-Web-Stack/
+  links:
+    - title: GitHub
+      url: https://github.com/cklukas/Agentic-Web-Stack
+source: docs
+home: docs/index.md
+exclude: [README.md]
+search: true
+nav:
+  - title: Start
+    page: docs/index.md
+  - title: Architecture
+    pages:
+      - docs/architecture/index.md
+      - docs/architecture/flows.md
+      - docs/architecture/layers.md
+      - docs/architecture/technology-stack.md
+      - docs/architecture/variants.md
+  - title: Learn
+    pages:
+      - title: Concepts
+        pages:
+          - docs/concepts/index.md
+          - docs/concepts/a2a.md
+          - docs/concepts/agent-card-vs-openapi.md
+          - docs/concepts/agent-card.md
+          - docs/concepts/agent-discovery.md
+          - docs/concepts/agent-registry.md
+          - docs/concepts/evaluation.md
+          - docs/concepts/framework-vs-protocol.md
+          - docs/concepts/identity-delegation.md
+          - docs/concepts/llms-txt.md
+          - docs/concepts/mcp-vs-a2a.md
+          - docs/concepts/mcp.md
+          - docs/concepts/memory.md
+          - docs/concepts/rag-vs-memory.md
+          - docs/concepts/tool-use.md
+          - docs/concepts/trust-model.md
+          - docs/concepts/versioning-governance.md
+      - title: Topics
+        pages:
+          - docs/topics/index.md
+          - docs/topics/agent-protocols.md
+          - docs/topics/apis.md
+          - docs/topics/applications.md
+          - docs/topics/discovery.md
+          - docs/topics/identity.md
+          - docs/topics/memory.md
+          - docs/topics/models.md
+      - docs/glossary.md
+  - title: Build
+    pages:
+      - title: Guides
+        pages:
+          - docs/guides/index.md
+          - docs/guides/end-to-end-demo.md
+          - docs/guides/operations-evaluation.md
+          - docs/guides/run-local-demo.md
+          - docs/guides/security-trust.md
+      - title: Specifications
+        pages:
+          - docs/specifications/index.md
+      - title: Decisions
+        pages:
+          - docs/decisions/index.md
+          - docs/decisions/agent-framework-selection.md
+          - docs/decisions/api-style.md
+          - docs/decisions/memory-store-selection.md
+          - docs/decisions/model-deployment.md
+          - docs/decisions/protocol-selection.md
+  - title: References
+    pages:
+      - docs/references/index.md
+      - docs/references/papers.md
+      - docs/references/protocols.md
+      - docs/references/standards.md
+      - docs/references/technology-origins.md
+      - docs/references/timeline.md
+      - docs/references/tools.md

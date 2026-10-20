@@ -1,0 +1,24 @@
+# Build and publish the documentation on rpi4 without network access.
+# Pin the ckdocs source so a tool update cannot silently change this site.
+version: 1
+on:
+  branches: [main]
+runs_on: primary
+sisters:
+  - name: ck-git-hosting
+    ref: 04c33d91c31ead48d73ca579cc1ab31dffb27098
+jobs:
+  - name: documentation
+    steps:
+      - name: build-ckdocs
+        script: |
+          make -C ../ck-git-hosting -j2 BUILD_ROOT="$TMPDIR" BUILD_DIR="$TMPDIR/ckdocs" "$TMPDIR/ckdocs/bin/ckdocs"
+          "$TMPDIR/ckdocs/bin/ckdocs" --version
+      - name: validate-and-build-site
+        script: |
+          "$TMPDIR/ckdocs/bin/ckdocs" build --root "$PWD" --out "$PWD/public" --strict
+    artifacts:
+      name: documentation
+      paths: [public]
+pages:
+  path: public

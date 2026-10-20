@@ -6,6 +6,10 @@
 - [RFC 9309: Robots Exclusion Protocol](https://www.rfc-editor.org/rfc/rfc9309) - standard behavior for `robots.txt`.
 - [Sitemaps XML format](https://www.sitemaps.org/protocol.html) - conventional URL discovery for crawlers and indexers.
 
+### Emerging Community Proposals
+
+- [llms.txt](https://llmstxt.org/) - proposed Markdown entry point to documentation for agents. See the [local concept page](/concepts/llms-txt) for its place in Layer 1 and its trust boundaries. This is a community proposal rather than a formal web standard.
+
 ## Identity and Authorization
 
 - [RFC 6749: OAuth 2.0 Authorization Framework](https://www.rfc-editor.org/rfc/rfc6749) - delegated authorization foundation.

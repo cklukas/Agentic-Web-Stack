@@ -174,6 +174,7 @@ export default withMermaid(defineConfig({
             { text: 'Agent2Agent', link: '/concepts/a2a' },
             { text: 'Model Context Protocol', link: '/concepts/mcp' },
             { text: 'Agent Discovery', link: '/concepts/agent-discovery' },
+            { text: 'llms.txt', link: '/concepts/llms-txt' },
             { text: 'Identity Delegation', link: '/concepts/identity-delegation' },
             { text: 'Trust Model', link: '/concepts/trust-model' },
             { text: 'Agent Registry', link: '/concepts/agent-registry' },

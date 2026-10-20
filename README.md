@@ -10,12 +10,18 @@ The goal is not to promote a specific vendor or framework, but to provide a clea
 
 ## Documentation
 
-This repository is documentation-first. The canonical project knowledge base lives in [`docs`](docs/index.md) and is published as a VitePress site.
+This repository is documentation-first. The canonical project knowledge base lives in [`docs`](docs/index.md) and is published with ckdocs on rpi4. The existing GitHub Pages workflow and local development previews use VitePress.
 
 ```bash
 npm install
 npm run docs:dev
 ```
+
+The rpi4 documentation workflow is [`.ckgit/ci.yml`](.ckgit/ci.yml), with
+navigation and site metadata in [`ckdocs.yml`](ckdocs.yml). It builds the pinned
+ckdocs source and publishes only after strict link and diagram validation.
+The GitHub workflow retains its existing demo checks and VitePress publishing
+path; the rpi4 workflow validates and publishes the ckdocs site independently.
 
 Use the documentation site for architecture notes, technology stack levels, topic goals, standards, protocol references, papers, glossary terms, and runnable demo guidance.
 
@@ -126,6 +132,7 @@ Layer 1  Discovery
          Agent Card
          robots.txt
          sitemap.xml
+         llms.txt (proposal)
 ```
 
 ## Demonstration Platform
@@ -190,6 +197,8 @@ Examples:
 ```
 
 Future standards and experiments can be added as the ecosystem evolves.
+
+The [llms.txt concept](docs/concepts/llms-txt.md) describes an optional documentation entry point in this layer: a curated guide to context an agent can read before using services. It is documented as a community proposal; the local demo does not currently serve it.
 
 ## Identity Layer
 

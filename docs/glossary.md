@@ -112,6 +112,10 @@ JSON Web Token. A compact token format often used to carry identity, authorizati
 
 A structured graph of entities and relationships used for navigation, reasoning, and context retrieval.
 
+## llms.txt
+
+[llms.txt](/concepts/llms-txt). A community proposal for a curated Markdown entry point to website documentation that agents can use as context. In this stack it belongs to Layer 1, Discovery.
+
 ## Local Inference
 
 Running a model on infrastructure controlled by the developer or organization, rather than calling a hosted model API.

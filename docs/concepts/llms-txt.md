@@ -43,7 +43,7 @@ Illustrative content for `https://research.example.edu/docs/llms.txt`:
 - [Tutorial](https://research.example.edu/docs/tutorial.md): A worked literature review.
 ```
 
-This is an architecture example; the local demo API does not currently serve `llms.txt` or Markdown page variants. The ckdocs documentation build generates its own `llms.txt` index for the published knowledge base, under the same URL prefix as the site. This index currently links to HTML documentation; Markdown page variants and v2 discovery links require separate publishing support.
+This is an architecture example; the local demo API does not currently serve `llms.txt` or Markdown page variants. The ckdocs documentation build generates its own `llms.txt` index for the published knowledge base, under the same URL prefix as the site. By default, its links target clean `.html.md` page versions. Every documentation page advertises its Markdown alternate and the covering index through v2 discovery links; the **Markdown** footer link opens the unrendered page. Setting `llms: false` in `ckdocs.yml` disables the generated index, Markdown versions, and discovery/footer links together.
 
 ## Adoption and Trust
 

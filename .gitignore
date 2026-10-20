@@ -31,4 +31,4 @@ __pycache__/
 *.pyc
 
 # ckdocs static site output
-public/
+/public/

@@ -88,6 +88,7 @@ export default withMermaid(defineConfig({
     plugins: [specsStaticPlugin()]
   },
   themeConfig: {
+    logo: '/images/agentic-web-stack-logo.png',
     nav: [
       { text: 'Start', link: '/' },
       { text: 'Architecture', link: '/architecture/' },

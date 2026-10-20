@@ -76,6 +76,11 @@ export default withMermaid(defineConfig({
   description:
     'Reference architectures, protocols, standards, and technologies for the emerging Agentic Web.',
   base: process.env.VITEPRESS_BASE ?? '/',
+  head: [['link', {
+    rel: 'icon',
+    type: 'image/png',
+    href: `${process.env.VITEPRESS_BASE ?? '/'}images/agentic-web-stack-logo.png`
+  }]],
   lastUpdated: true,
   mermaid: {
     securityLevel: 'strict',

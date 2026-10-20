@@ -6,7 +6,7 @@ on:
 runs_on: primary
 sisters:
   - name: ck-git-hosting
-    ref: aeefb78bc398c8ffc9593da1cc1ed415427ae6e7
+    ref: 4646d16145b453fd2680d967ff98e391994b8394
 jobs:
   - name: documentation
     steps:

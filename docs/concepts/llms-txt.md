@@ -43,7 +43,7 @@ Illustrative content for `https://research.example.edu/docs/llms.txt`:
 - [Tutorial](https://research.example.edu/docs/tutorial.md): A worked literature review.
 ```
 
-This is an architecture example; the local demo API does not currently serve `llms.txt` or Markdown page variants. The ckdocs documentation build generates its own `llms.txt` index for the published knowledge base.
+This is an architecture example; the local demo API does not currently serve `llms.txt` or Markdown page variants. The ckdocs documentation build generates its own `llms.txt` index for the published knowledge base, under the same URL prefix as the site. This index currently links to HTML documentation; Markdown page variants and v2 discovery links require separate publishing support.
 
 ## Adoption and Trust
 
@@ -53,6 +53,9 @@ For this stack, apply the same trust boundary as for other retrieved web content
 
 ## Related Pages
 
+- [Documentation discovery flow](/architecture/flows#documentation-discovery-with-llmstxt)
+- [Standards and proposals](/references/standards#emerging-community-proposals)
+- [Technology origins](/references/technology-origins#documentation-discovery)
 - [Discovery topic](/topics/discovery)
 - [Agent Discovery](./agent-discovery.md)
 - [Agent Card vs OpenAPI](./agent-card-vs-openapi.md)

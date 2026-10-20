@@ -2,7 +2,7 @@ version: 1
 site:
   title: Agentic Web Stack
   logo: docs/public/images/agentic-web-stack-logo.png
-  favicon: docs/public/images/agentic-web-stack-logo.png
+  favicon: docs/public/images/agentic-web-stack-favicon.png
   description: Reference architectures, protocols, standards, and technologies for the emerging Agentic Web.
   footer: Page created by Dr. C. Klukas
   url: http://rpi4:8421/Agentic-Web-Stack/

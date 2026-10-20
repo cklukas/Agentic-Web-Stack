@@ -15,7 +15,8 @@ Reference pages should prioritize primary sources:
 ### Essential
 
 - [Protocols](./protocols.md) - Agent protocol references for MCP, A2A, and related web protocol surfaces.
-- [Standards](./standards.md) - RFCs, specifications, and standards-body documents used by the stack.
+- [Standards](./standards.md) - RFCs, specifications, standards-body documents, and clearly labeled community proposals used by the stack.
+- [llms.txt](/concepts/llms-txt) - Documentation discovery in Layer 1, with the [official proposal](https://llmstxt.org/) and [revision notes](https://llmstxt.org/changes.html). See also [discovery standards and proposals](./standards.md#discovery-and-web-metadata).
 - [Glossary](/glossary) - Definitions for terms used across the architecture and demo.
 
 ### Implementation

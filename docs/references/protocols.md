@@ -24,3 +24,7 @@ A2A is tracked in this project as the primary agent-to-agent discovery, capabili
 - [OpenAPI Specification](https://spec.openapis.org/oas/latest.html) - Machine-readable API contract format commonly consumed by tools, gateways, and agents.
 - [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html) - Identity protocol layered on OAuth2 for authentication and ID tokens.
 - [OAuth 2.0 Authorization Framework](https://www.rfc-editor.org/rfc/rfc6749) - Authorization framework for delegated, scoped access to protected resources.
+
+## Related Documentation Discovery
+
+[llms.txt](https://llmstxt.org/) is a community proposal for a Markdown documentation index, rather than an agent messaging or tool protocol. It can help clients locate context before using MCP, A2A, or an API. The [local concept](/concepts/llms-txt) and [discovery reference](./standards.md#emerging-community-proposals) explain its separate role.

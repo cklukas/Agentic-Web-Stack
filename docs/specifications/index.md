@@ -33,6 +33,10 @@ The local runnable demo uses these artifacts as its contract source and patches 
 | Models | [model-routing.yaml](/specs/demo/model-routing.yaml) | Describe provider-neutral routing and usage capture |
 | Applications | [application-workflow.yaml](/specs/demo/application-workflow.yaml), [evaluation-scenarios.yaml](/specs/demo/evaluation-scenarios.yaml) | Compose the workflow and verify expected behavior |
 
+## Documentation Discovery Output
+
+The ckdocs website build also generates `llms.txt` and `sitemap.xml` for this knowledge base. The [llms.txt concept](/concepts/llms-txt) explains the index and the [documentation discovery flow](/architecture/flows#documentation-discovery-with-llmstxt) shows how a client can use one. These publishing outputs describe the documentation site; they are separate from the demo API artifacts above and are not endpoints served by the local FastAPI demo.
+
 ## Runnable Demo
 
 [Run the Local Demo](/guides/run-local-demo) shows how the FastAPI service exposes the Agent Card, registry entry, OpenAPI contract, MCP tools, A2A endpoint, scoped dev tokens, document search, trace output, and review draft creation from the same reference scenario.

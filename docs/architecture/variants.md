@@ -21,6 +21,7 @@ Use this when the goal is learning, local testing, or documentation examples.
 Use this when agents cross team or organizational boundaries.
 
 - Discovery uses signed or approved Agent Cards plus private registries.
+- Optional [llms.txt indexes](/concepts/llms-txt) help agents find approved documentation; fetched links pass the same destination and content checks as other external sources.
 - Identity uses enterprise OIDC, scoped delegation, policy gateways, and audit.
 - APIs preserve OpenAPI contracts and compatibility rules.
 - MCP and A2A traffic passes through gateways with validation and logging.
@@ -33,6 +34,7 @@ Use this when agents cross team or organizational boundaries.
 Use this when data residency, network isolation, or cost control dominates.
 
 - Discovery and registries stay inside a private network.
+- A documentation `llms.txt` index can stay on the internal site too; its location does not make protected content public or bypass authentication.
 - Identity uses local or enterprise identity providers.
 - APIs, tools, memory, and models run on controlled infrastructure.
 - Local inference and local vector or graph stores are preferred.
@@ -43,6 +45,7 @@ Use this when data residency, network isolation, or cost control dominates.
 Use this when the primary artifact is a cited analysis, report, review, or decision memo.
 
 - Discovery identifies approved research agents and document sources.
+- A source's `llms.txt` can point to corpus guides and citation instructions before retrieval; it complements the document search API.
 - Identity preserves the researcher, tenant, and allowed collections.
 - APIs expose document search, document retrieval, and draft creation.
 - MCP tools provide controlled access to sources.

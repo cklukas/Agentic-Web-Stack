@@ -193,6 +193,7 @@ Examples:
 /.well-known/agent-card.json
 /robots.txt
 /sitemap.xml
+/llms.txt  (optional documentation index proposal)
 /openapi.json
 ```
 

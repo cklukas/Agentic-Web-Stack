@@ -9,6 +9,7 @@ This page defines security expectations for the Literature Review Assistant scen
 | Boundary | Risk | Required control |
 | --- | --- | --- |
 | Public discovery metadata | Malicious or stale Agent Cards | HTTPS, cache validation, allowlisted registries for sensitive deployments |
+| Documentation discovery | Prompt injection or unsafe destinations in llms.txt and linked pages | Check each destination, preserve authentication boundaries, and treat fetched text as external data |
 | Identity provider to service | Token misuse or wrong audience | OIDC discovery, audience checks, expiry checks, scope checks |
 | Agent to API | Excessive permissions | Least-privilege OAuth2 scopes and policy enforcement |
 | Agent to MCP tool | Tool abuse or unsafe side effects | Tool allowlists, input validation, user approval for writes |
@@ -34,6 +35,7 @@ This page defines security expectations for the Literature Review Assistant scen
 - Validate token issuer, audience, expiry, signature, scopes, tenant, and authorized party.
 - Never place access tokens, refresh tokens, API keys, or secrets into model context.
 - Treat retrieved documents, web pages, email, and remote agent output as untrusted content.
+- Apply those checks to [llms.txt](/concepts/llms-txt) and every selected link; an index cannot approve an agent, grant access, or override the user's instructions.
 - Require human approval before creating, sending, publishing, deleting, or externally sharing content.
 - Restrict MCP tools with allowlists, schema validation, timeouts, rate limits, and audit logs.
 - Block internal network targets unless a tool is explicitly designed for internal access.

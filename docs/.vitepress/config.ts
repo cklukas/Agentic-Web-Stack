@@ -79,7 +79,7 @@ export default withMermaid(defineConfig({
   head: [['link', {
     rel: 'icon',
     type: 'image/png',
-    href: `${process.env.VITEPRESS_BASE ?? '/'}images/agentic-web-stack-logo.png`
+    href: `${process.env.VITEPRESS_BASE ?? '/'}images/agentic-web-stack-favicon.png`
   }]],
   lastUpdated: true,
   mermaid: {

@@ -24,9 +24,11 @@ flowchart TD
   Frameworks["2023-2024<br/>Agent application frameworks<br/>Stateful workflows, tool calling,<br/>memory, orchestration"]
   Protocols["2024-2026<br/>Agent protocols<br/>MCP, A2A, Agent Cards,<br/>production-ready interoperability"]
   Enterprise["2027<br/>Expected enterprise establishment<br/>Governed discovery, delegation,<br/>audit, evaluation, policy"]
+  Docs["2024-2026<br/>Documentation discovery<br/>llms.txt proposal and v2"]
   Consolidation["2028-2030<br/>Expected consolidation<br/>Registries, marketplaces,<br/>trust profiles, operations"]
 
   Foundations --> Retrieval --> Models --> Frameworks --> Protocols --> Enterprise --> Consolidation
+  Frameworks --> Docs --> Enterprise
 ```
 
 ## Chronological Milestones
@@ -38,10 +40,13 @@ flowchart TD
 | 2019-2022 | Retrieval and semantic search become practical enough for application developers. Agent memory starts to look less like a single database choice and more like a combination of vectors, graphs, relational data, and document stores. | Weaviate, Qdrant, Chroma, pgvector, Neo4j, RDF stores | Established infrastructure |
 | 2020-2023 | Hosted model APIs, local inference, and serving engines make model capability composable. Applications can call reasoning and generation as infrastructure, while local runtimes improve control over cost, data, and deployment. | OpenAI API, Claude, Gemini, llama.cpp, Ollama, vLLM, LiteLLM | Established infrastructure |
 | 2023-2024 | Agent application frameworks turn prompts, tools, state, memory, and control flow into software architecture concerns. Teams start building repeatable agent workflows instead of one-off chat integrations. | LangGraph, CrewAI, Semantic Kernel, early ADK patterns | Emerging default |
+| September 2024 | Jeremy Howard proposes an agent-readable entry point to website documentation. | [llms.txt](/concepts/llms-txt) | Community proposal |
 | 2024-2025 | Agent-specific protocol layers appear. MCP standardizes how agents and AI applications connect to tools and context. A2A and Agent Cards standardize how independent agents describe themselves, delegate tasks, and exchange artifacts. | MCP, A2A, Agent Card | Emerging standard layer |
 | 2026 | Production-ready agent interoperability becomes credible, especially where protocols have stable specifications, governance, SDKs, examples, and security guidance. | A2A v1.0, maturing MCP specification work, agent registries, policy gateways | Early establishment |
 | 2027 | Expected establishment year for governed enterprise agent interoperability. Common production stacks should have explicit discovery metadata, scoped delegation, protocol gateways, audit trails, evaluation suites, and human override paths. | Agent Cards, A2A, MCP, OAuth2/OIDC, OpenAPI, policy engines, evaluation harnesses | Expected establishment |
 | 2028-2030 | Expected consolidation years for the broader agentic web. Registries, marketplaces, trust frameworks, certification profiles, and cross-organization agent operations may become normal architecture features. | Agent registries, capability marketplaces, trust profiles, compliance controls, multi-agent operations | Expected establishment |
+
+The [llms.txt v2 revision](https://llmstxt.org/changes.html), published in August 2026, clarifies path scope and link discovery. It develops alongside agent protocols as a documentation convention; see [Technology Origins](./technology-origins.md#documentation-discovery) for provenance.
 
 ## Stack Interpretation
 

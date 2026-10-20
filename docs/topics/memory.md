@@ -8,6 +8,8 @@ The memory layer gives agents durable access to semantic context, structured kno
 
 Memory is Layer 5 of the Agentic Web Stack. It decides what context survives beyond one prompt, how information is retrieved, and how structured or semantic knowledge becomes available to agents.
 
+Discovery can supply inputs: an [llms.txt index](/concepts/llms-txt) may guide an agent to relevant documentation. Fetching those pages provides task context; persisting or indexing them requires the memory layer's provenance, access, and retention controls.
+
 ## Goals
 
 - Compare vector databases, knowledge graphs, and hybrid memory patterns.

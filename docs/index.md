@@ -68,13 +68,15 @@ flowchart TB
   L4["4 Agent Protocols<br/>MCP tools and A2A tasks<br/>mcp-tools.json, a2a-message-send.json"]
   L3["3 APIs<br/>Deterministic operations<br/>openapi.yaml"]
   L2["2 Identity<br/>OIDC, OAuth2, JWT, scopes<br/>oidc-client.example.json"]
-  L1["1 Discovery<br/>Agent Card and registry metadata<br/>agent-card.json, agent-registry.yaml"]
+  L1["1 Discovery<br/>Agents, registries, documentation<br/>Agent Card, llms.txt (proposal)"]
 
   L1 --> L2 --> L3 --> L4 --> L5 --> L6 --> L7
   L3 -. OpenAPI contract .-> L4
   L4 -. MCP tool access .-> L5
   L4 -. A2A delegation .-> L7
 ```
+
+Layer 1 includes [llms.txt](/concepts/llms-txt), a proposed documentation index an agent can consult before selecting tools. Its linked content can supply retrieval context; Agent Cards, API contracts, and access policies still govern service use. The [documentation discovery flow](/architecture/flows#documentation-discovery-with-llmstxt) shows this optional path.
 
 ## Start Here
 
@@ -85,6 +87,7 @@ flowchart TB
 - [Architecture Flows](/architecture/flows) shows discovery, identity, MCP, A2A, memory, and full-stack diagrams.
 - [Architecture Variants](/architecture/variants) shows minimal, enterprise, local/private, and research stack variants.
 - [Agent Card](/concepts/agent-card) explains the machine-readable metadata used for agent discovery.
+- [llms.txt](/concepts/llms-txt) explains how agents find documentation context and how it differs from service discovery.
 - [Agent2Agent](/concepts/a2a) explains A2A for cross-agent communication and delegation.
 - [Model Context Protocol](/concepts/mcp) explains MCP for connecting agents to tools and resources.
 - [Topic Guides](/topics/) include example use cases and specification sketches for each stack layer.
@@ -105,3 +108,4 @@ flowchart TB
 ## References
 
 - [References](/references/) collect standards, protocols, timeline history, technology origins, papers, and tools.
+- [Discovery standards and proposals](/references/standards#discovery-and-web-metadata) cover well-known metadata, robots.txt, sitemaps, and llms.txt.

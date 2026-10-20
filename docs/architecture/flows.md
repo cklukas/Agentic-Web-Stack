@@ -19,6 +19,35 @@ sequenceDiagram
   end
 ```
 
+## Documentation Discovery with llms.txt
+
+This optional deployment flow complements Agent Card discovery. It illustrates the [llms.txt proposal](/concepts/llms-txt), rather than an endpoint implemented by the local demo API. The index may live at the website root or under a documentation path.
+
+```mermaid
+sequenceDiagram
+  participant Client as Client Agent
+  participant Docs as Documentation Site
+  participant Policy as Client Policy
+
+  Client->>Docs: Request documentation entry page
+  Docs-->>Client: Page and optional describedby link
+  alt Applicable llms.txt is available
+    Client->>Policy: Check index URL and network policy
+    Policy-->>Client: Allowed destination
+    Client->>Docs: Fetch scoped llms.txt index
+    Docs-->>Client: Overview and documentation links
+    Client->>Policy: Check selected page destinations
+    Policy-->>Client: Allowed destinations
+    Client->>Docs: Fetch relevant linked pages
+    Docs-->>Client: Documentation, preferably Markdown
+    Client->>Client: Treat fetched text as external context
+  else No index is available
+    Client->>Client: Continue with ordinary documentation
+  end
+```
+
+The client still validates Agent Cards, API contracts, and credentials separately. Index text and linked documents cannot grant permissions or override user instructions. See [Security and Trust](/guides/security-trust).
+
 ## OAuth Delegated Access
 
 ```mermaid

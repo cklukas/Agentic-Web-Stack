@@ -26,6 +26,14 @@ Agent-specific protocols are the newest part of the stack. They should be evalua
 | Agent Card | Emerged with A2A discovery in 2025 and stabilized with the A2A specification | Defined by the A2A project | Gives agents a machine-readable self-description at `/.well-known/agent-card.json`, including identity, skills, endpoints, capabilities, and security requirements |
 | Model Context Protocol (MCP) | Introduced by Anthropic in November 2024 | Originally developed by Anthropic; now broadly adopted across AI clients, tools, and servers | Standardizes how AI applications and agents connect to tools, resources, and prompt templates |
 
+## Documentation Discovery
+
+| Technology | First public milestone | Origin / steward | Why it matters |
+| --- | --- | --- | --- |
+| [llms.txt](/concepts/llms-txt) | Proposed 3 September 2024; v2 published August 2026 | Jeremy Howard; community proposal at [llmstxt.org](https://llmstxt.org/) | A Markdown entry point for documentation context in Layer 1; v2 clarifies path scope and discovery links. It is an evolving proposal, not a formal web standard. |
+
+See the [v2 revision notes](https://llmstxt.org/changes.html) for changes to link discovery, Markdown page URLs, and consumption guidance.
+
 ## Web, API, and Identity Foundations
 
 These are older web foundations. They are not agent-specific, but they are critical because agent systems still need ordinary service contracts, authentication, authorization, and metadata.

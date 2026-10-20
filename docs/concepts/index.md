@@ -36,6 +36,7 @@ Each concept page includes a short use case and a small example message, metadat
 | Concept | Main question | Typical artifact |
 | --- | --- | --- |
 | Agent Card | What agent is this, and what can it do? | JSON document at `/.well-known/agent-card.json` |
+| llms.txt | Where is useful documentation context for this site or path? | Proposed Markdown index linking to relevant documentation |
 | A2A | How does one agent talk to another agent? | Agent Card, task messages, artifacts, streaming or push updates |
 | MCP | How does an agent use external tools and context? | MCP server exposing tools, resources, and prompts |
 | OpenAPI | How does software describe HTTP APIs? | `openapi.json` or `openapi.yaml` |

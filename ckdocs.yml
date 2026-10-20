@@ -8,6 +8,7 @@ site:
   links:
     - title: GitHub
       url: https://github.com/cklukas/Agentic-Web-Stack
+      icon: github
 source: docs
 home: docs/index.md
 exclude: [README.md]

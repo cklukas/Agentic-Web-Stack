@@ -17,6 +17,8 @@ concurrency:
 # ckdocs is installed from the pinned ck-git-hosting release's Debian package,
 # which must match the SHA-256 recorded here. .ckgit/ci.yml builds the same
 # release from source for the rpi4 Pages, so both hosts run ckdocs 0.8.1.
+# The runner image is pinned rather than ubuntu-latest: that .deb is built
+# for and exercised on Ubuntu 24.04, as in ckmux's Pages workflow.
 env:
   CKDOCS_REPOSITORY: cklukas/ck-git-hosting
   CKDOCS_VERSION: 0.8.1
@@ -25,25 +27,25 @@ env:
 jobs:
   build:
     name: Validate and build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.12'
 
       - name: Setup uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v10
         with:
           enable-cache: true
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
@@ -72,7 +74,7 @@ jobs:
 
       - name: Upload GitHub Pages artifact
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ${{ runner.temp }}/site
 
@@ -80,7 +82,7 @@ jobs:
     name: Deploy documentation
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       pages: write
       id-token: write
@@ -90,4 +92,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

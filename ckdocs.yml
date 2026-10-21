@@ -5,7 +5,7 @@ site:
   favicon: docs/public/images/agentic-web-stack-favicon.png
   description: Reference architectures, protocols, standards, and technologies for the emerging Agentic Web.
   footer: Page created by Dr. C. Klukas
-  url: http://rpi4:8421/Agentic-Web-Stack/
+  url: https://cklukas.github.io/Agentic-Web-Stack/
   links:
     - title: GitHub
       url: https://github.com/cklukas/Agentic-Web-Stack

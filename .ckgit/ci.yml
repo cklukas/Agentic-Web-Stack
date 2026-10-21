@@ -1,5 +1,7 @@
 # Build and publish the documentation on rpi4 without network access.
 # Pin the ckdocs source so a tool update cannot silently change this site.
+# ckdocs.yml's site.url is the public GitHub Pages address; --site-url
+# points this host's llms.txt and Markdown links at the rpi4 copy instead.
 version: 1
 on:
   branches: [main]
@@ -16,7 +18,7 @@ jobs:
           "$TMPDIR/ckdocs/bin/ckdocs" --version
       - name: validate-and-build-site
         script: |
-          "$TMPDIR/ckdocs/bin/ckdocs" build --root "$PWD" --out "$PWD/public" --strict
+          "$TMPDIR/ckdocs/bin/ckdocs" build --root "$PWD" --site-url http://rpi4:8421/Agentic-Web-Stack/ --out "$PWD/public" --strict
     artifacts:
       name: documentation
       paths: [public]

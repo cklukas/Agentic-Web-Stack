@@ -10,18 +10,21 @@ The goal is not to promote a specific vendor or framework, but to provide a clea
 
 ## Documentation
 
-This repository is documentation-first. The canonical project knowledge base lives in [`docs`](docs/index.md) and is published with ckdocs on rpi4. The existing GitHub Pages workflow and local development previews use VitePress.
+This repository is documentation-first. The canonical project knowledge base lives in [`docs`](docs/index.md) and is built with [ckdocs](https://github.com/cklukas/ck-git-hosting), with navigation and site metadata in [`ckdocs.yml`](ckdocs.yml). With `ckdocs` on your `PATH`, preview it locally with live reload:
 
 ```bash
-npm install
 npm run docs:dev
 ```
 
-The rpi4 documentation workflow is [`.ckgit/ci.yml`](.ckgit/ci.yml), with
-navigation and site metadata in [`ckdocs.yml`](ckdocs.yml). It builds the pinned
-ckdocs source and publishes only after strict link and diagram validation.
-The GitHub workflow retains its existing demo checks and VitePress publishing
-path; the rpi4 workflow validates and publishes the ckdocs site independently.
+`npm run docs:build` writes the static site to `public/` and fails on any broken
+link, heading fragment or diagram.
+
+Two workflows publish the same site with ckdocs 0.8.1, each only after that
+strict validation: [`.github/workflows/docs.yml`](.github/workflows/docs.yml)
+runs the spec and demo checks and deploys to
+[GitHub Pages](https://cklukas.github.io/Agentic-Web-Stack/), and
+[`.ckgit/ci.yml`](.ckgit/ci.yml) builds the pinned ckdocs source and publishes
+the rpi4 copy, passing `--site-url` so its `llms.txt` links stay on that host.
 
 Use the documentation site for architecture notes, technology stack levels, topic goals, standards, protocol references, papers, glossary terms, and runnable demo guidance.
 
@@ -40,7 +43,7 @@ Start with:
 ## Repository Structure
 
 ```text
-docs/      Canonical documentation and VitePress site
+docs/      Canonical documentation, published with ckdocs
 specs/     Machine-readable specs, schemas, discovery documents, and API definitions
 services/  Local FastAPI demo plus future backend, MCP, and A2A services
 agents/    Future research, coding, and enterprise agent implementations

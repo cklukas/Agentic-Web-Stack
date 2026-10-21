@@ -2,8 +2,7 @@
 
 ## Documentation
 
-- [VitePress](https://vitepress.dev/) - Markdown-first static documentation site generator.
-- [VitePress Plugin Mermaid](https://emersonbottero.github.io/vitepress-plugin-mermaid/) - Mermaid diagram rendering for VitePress.
+- [ckdocs](https://github.com/cklukas/ck-git-hosting) - static documentation site generator that builds this site, renders its Mermaid diagrams to SVG, and publishes `llms.txt`.
 - [Mermaid](https://mermaid.js.org/) - Text-based diagram syntax used for architecture flows.
 - [GitHub Pages](https://docs.github.com/en/pages) - static hosting target for this project's documentation.
 - [Redocly CLI](https://redocly.com/docs/cli) - OpenAPI linting used by `npm run specs:validate`.
